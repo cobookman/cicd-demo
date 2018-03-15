@@ -1,0 +1,9 @@
+steps:
+  - name: "gcr.io/cloud-builders/go"
+    args: ["install", "github.com/cobookman/cicd-demo"]
+    env: ["PROJECT_ROOT=github.com/cobookman/cicd-demo"]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "gcr.io/container-builder-demo-198120/cicd-demo:$REVISION_ID", "-f", "Dockerfile", "."]
+images:
+  - "gcr.io/container-builder-demo-198120/cicd-demo:$REVISION_ID"
+
